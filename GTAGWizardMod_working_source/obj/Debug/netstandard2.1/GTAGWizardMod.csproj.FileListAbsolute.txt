@@ -1,0 +1,10 @@
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.csproj.AssemblyReference.cache
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.GeneratedMSBuildEditorConfig.editorconfig
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.AssemblyInfoInputs.cache
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.AssemblyInfo.cs
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.csproj.CoreCompileInputs.cache
+D:\downloads\GTAGWizardMod_working_source\bin\Debug\netstandard2.1\GTAGWizardMod.deps.json
+D:\downloads\GTAGWizardMod_working_source\bin\Debug\netstandard2.1\GTAGWizardMod.dll
+D:\downloads\GTAGWizardMod_working_source\bin\Debug\netstandard2.1\GTAGWizardMod.pdb
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.dll
+D:\downloads\GTAGWizardMod_working_source\obj\Debug\netstandard2.1\GTAGWizardMod.pdb

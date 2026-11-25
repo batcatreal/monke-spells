@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>GTAGWizardMod</AssemblyName>
+    <RootNamespace>GTAGWizard</RootNamespace>
+    <Version>0.1.0</Version>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <DebugType>portable</DebugType>
+
+    <!--
+      Path to your Gorilla Tag install. Override on the command line if yours differs:
+        dotnet build -c Release -p:GamePath="D:\SteamLibrary\steamapps\common\Gorilla Tag"
+    -->
+    <GamePath Condition="'$(GamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag</GamePath>
+    <ManagedPath>$(GamePath)\Gorilla Tag_Data\Managed</ManagedPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Lets the SDK build net472 without a separately installed .NET Framework Developer Pack. -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="UnityEngine.PhysicsModule">
+		  <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+		  <Private>false</Private>
+	  </Reference>
+	  <!-- BepInEx 5 core. Private=false so we never copy these next to our DLL. -->
+    <Reference Include="BepInEx">
+      <HintPath>$(GamePath)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+	  <Reference Include="Assembly-CSharp">
+		  <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Assembly-CSharp.dll</HintPath>
+		  <Private>false</Private>
+	  </Reference>
+    <!-- Unity modules (all ship with the game). NOTE: no Assembly-CSharp reference is needed;
+         the only game-specific lookup (the hand transform) is done by reflection in GameBridge.cs. -->
+    <Reference Include="UnityEngine">
+      <HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(ManagedPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>$(ManagedPath)\UnityEngine.XRModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- After a successful build, copy the DLL into BepInEx\plugins\GTAGWizardMod (only if that folder exists). -->
+  <Target Name="DeployToGame" AfterTargets="Build" Condition="Exists('$(GamePath)\BepInEx\plugins')">
+    <MakeDir Directories="$(GamePath)\BepInEx\plugins\GTAGWizardMod" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePath)\BepInEx\plugins\GTAGWizardMod" />
+    <Message Importance="high" Text="Deployed GTAGWizardMod.dll to $(GamePath)\BepInEx\plugins\GTAGWizardMod" />
+  </Target>
+
+</Project>
